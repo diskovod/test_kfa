@@ -8,4 +8,6 @@ def pytest_addoption(parser):
 	#parser.addoption("--force", dest="force", action="store_true", default=False, help="Force update (works only with TC Description now)")
 	parser.addoption("--key", dest="key", help="SSH Key for key auth")
 	parser.addoption("--test-id", dest="test-id", help="Execute individual test(s)")
+	parser.addoption("--test_rule", dest="test_rule", help="Input yes/no")
+
 

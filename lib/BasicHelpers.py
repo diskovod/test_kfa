@@ -23,7 +23,6 @@ class sshConnect(object):
 
     def getData(self, connector, input, test_type, conn_type = 'ssh'):
 
-        #print input
         if conn_type == 'ssh':
 
             if test_type =='simple':
@@ -32,7 +31,7 @@ class sshConnect(object):
                 result = stdout.readlines()
                 connector.close()
 
-                return result
+                return [line.strip() for line in result]
 
             elif test_type == 'simple_w_setup':
 
@@ -84,7 +83,7 @@ class sshConnect(object):
     #	pass
 
     def print_data(self, data):
-        #print type(data)
+
 
         if type(data) is list:
             for line in data:
@@ -105,7 +104,6 @@ class sshConnect(object):
 
     def print_hdr(self, device, url, descr, id):
 
-
         try:
             rows, columns = os_popen('stty size', 'r').read().split()
         except ValueError:
@@ -120,10 +118,8 @@ class sshConnect(object):
         print '****	TEST CASE::', url+' | '+descr
         print '***'
         print '-' * int(columns)
-        #sys.stdout.write('== > Result:: ')
         print ''
-        print '== > Actual Result:: '
-        print ''
+
 
     def getSubnet(self, ip_range):
 
@@ -165,7 +161,7 @@ class sshConnect(object):
 
             #regexp = '\:d\{1,4}'
             result_net = ':'.join(filtered_net)
-            #print len(original_net), len(filtered_net), original_net, filtered_net
+            #print len(ori  ginal_net), len(filtered_net), original_net, filtered_net
             #for e in range(len(original_net)-len(filtered_net)-1):
             #result_net += regexp
 
